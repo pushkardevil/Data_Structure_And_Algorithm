@@ -12,6 +12,7 @@ class Solution
 	    }
 	    s.push(node);
 	}
+	
 	vector<int> topoSort(int V, vector<int> adj[]) 
 	{
 	    vector<int>topo;

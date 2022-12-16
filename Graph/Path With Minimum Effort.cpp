@@ -1,4 +1,7 @@
-int n = heights.size();
+class Solution {
+public:
+    int minimumEffortPath(vector<vector<int>>& heights) {
+        int n = heights.size();
 
         int m = heights[0].size();
 
@@ -81,3 +84,5 @@ int n = heights.size();
         
 
         return 0 ;
+    }
+};

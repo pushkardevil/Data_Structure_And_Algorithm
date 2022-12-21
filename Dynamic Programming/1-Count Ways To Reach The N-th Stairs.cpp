@@ -10,4 +10,5 @@ int countDistinctWays(int nStairs) {
           prev= cur_i;
       }
     return prev;
+    
 }

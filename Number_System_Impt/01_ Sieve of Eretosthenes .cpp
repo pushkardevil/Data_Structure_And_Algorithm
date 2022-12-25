@@ -13,6 +13,8 @@ void SieveOfEratosthenes(int n)
 	for(int i=0;i<=n+1;i++){
 		is_prime[i]=1;
 	}
+	is_prime[0]=0;
+	is_prime[1]=0;
 
 	for (int i=2;i*i<=n;i++) {
 		if (is_prime[i] == 1) {

@@ -1,3 +1,5 @@
+// T.C----O(sqrt(n)).
+
 #include<bits/stdc++.h>
 using namespace std;
 

@@ -54,7 +54,6 @@ class Solution{
         for(int i=0;i<topo.size();i++){
             ans=ans+char(topo[i] + 'a');
         }
-        
         return ans;
     }
 };

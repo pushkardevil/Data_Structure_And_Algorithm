@@ -6,69 +6,51 @@ class Solution
         // Code here
         int n=grid.size();
         int m=grid[0].size();
-        int c=0;
-        int ans=0;
-
         
-        queue<pair<int,int>>q;
+        int vis[n][m];
+        //{{row, col} , time}
+        queue<pair<pair<int,int> , int>>q;
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
                 if(grid[i][j] == 2){
-                    q.push({i , j});
+                    q.push({{i , j} , 0});
+                    vis[i][j]=2;
                 }
-
-                if(grid[i][j] == 1) c++;
+                else{
+                    vis[i][j]=1;
+                }
             }
         }
-
+        
+        int time=0;
+        int delrow[]={-1 , 0 , 1 , 0};
+        int delcol[]={0 , 1 , 0 , -1};
         while(!q.empty()){
-            int s=q.size();
-            if(c == 0) return ans;
-
-            while(s--){
-                auto a=q.front();
-                q.pop();
-
-                int i=a.first;
-                int j=a.second;
-
-                if(i >0){
-                    if(grid[i-1][j] == 1){
-                        c--;
-                        grid[i-1][j] = 2;
-                        q.push({i-1,j});
-                    }
-                }
-
-                if(j >0){
-                    if(grid[i][j-1] == 1){
-                        c--;
-                        grid[i][j-1] = 2;
-                        q.push({i,j-1});
-                    }
-                }
-
-                if(i < n-1){
-                    if(grid[i+1][j] == 1){
-                        c--;
-                        grid[i+1][j] = 2;
-                        q.push({i+1,j});
-                    }
-                }
-
-                if(j < m-1){
-                    if(grid[i][j+1] == 1){
-                        c--;
-                        grid[i][j + 1] = 2;
-                        q.push({i,j + 1});
-                    }
-                }
+            int row=q.front().first.first;
+            int col=q.front().first.second;
+            int t=q.front().second;
+            time=max(t , time);
+            q.pop();
+            
+            for(int i=0;i<4;i++){
+                int nrow=row+delrow[i];
+                int ncol=col+delcol[i];
                 
+                if(nrow>=0 && nrow<n && ncol>=0 && ncol<m &&  vis[nrow][ncol] !=2  && grid[nrow][ncol] == 1){
+                    q.push({{nrow , ncol} , t+1});
+                    vis[nrow][ncol]=2;
+                }
             }
-            ans++;
-
         }
-
-        return c==0?ans:-1;
+        
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(vis[i][j] != 2 && grid[i][j] == 1) return -1;
+            }
+        }
+        
+        
+        return time;
     }
 };

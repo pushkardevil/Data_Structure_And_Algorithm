@@ -34,7 +34,6 @@ class Solution {
                     dfs(i , j , grid , vis , v , i , j);
                     s.insert(v);
                 }
-                
             }
         }
         return s.size();

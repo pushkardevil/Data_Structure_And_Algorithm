@@ -40,7 +40,6 @@ int lastocc(vector<int>& arr, int n, int key) {
         else if(key < arr[mid]) {//left me jao
             e = mid - 1;
         }
-
         mid = s + (e-s)/2;
     }
     return ans;

@@ -23,7 +23,6 @@ int firstocc(vector<int>& arr, int n, int key) {
     return ans;
 }
 
-    
 int lastocc(vector<int>& arr, int n, int key) {
 
     int s = 0, e = n-1;

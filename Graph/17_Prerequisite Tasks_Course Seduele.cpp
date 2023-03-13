@@ -1,12 +1,16 @@
-vector<int>adj[V];
+class Solution {
+public:
+	bool isPossible(int V, vector<pair<int, int> >& prerequisites) {
+	    // Code here
+	    vector<int>adj[V];
 	    for(auto it: prerequisites){
-	        adj[it[1]].push_back(it[0]);
+	        adj[it.first].push_back(it.second);
 	    }
 	    
 	    
 	    
-	    vector<int>indegree(V , 0);
-	    //int indegree[V]={0};
+	    
+	    int indegree[V]={0};
 	    for(int i=0;i<V;i++){
 	        for(auto it:adj[i]){
 	            indegree[it]++;
@@ -20,11 +24,12 @@ vector<int>adj[V];
 	        }
 	    }
 	    
-	    vector<int>topo;
+	    int cnt=0;
 	    while(!q.empty()){
 	        int node=q.front();
 	        q.pop();
-	        topo.push_back(node);
+	        cnt++;
+	        //topo.push_back(node);
 	        
 	        for(auto it:adj[node]){
 	            indegree[it]--;
@@ -33,9 +38,11 @@ vector<int>adj[V];
 	        
 	        
 	    }
-	    if(topo.size() == V){
-	        return topo;
+	    if(cnt == V){
+	        return true;
 	    }
 	    else{
-	        return {};
+	        return false;
 	    }
+	}
+};

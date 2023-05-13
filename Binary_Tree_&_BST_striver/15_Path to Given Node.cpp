@@ -1,5 +1,5 @@
 bool path(TreeNode* root, int B , vector<int>&ans){
-     if(root == NULL) return NULL;
+     if(root == NULL) return false;
      
      ans.push_back(root->val);
      if(root->val == B) return true;

@@ -1,57 +1,46 @@
-class Solution {
-public:
-int firstocc(vector<int>& arr, int n, int key) {
-
-    int s = 0, e = n-1;
-    int mid = s + (e-s)/2;
-    int ans = -1;
-    while(s<=e) {
-
-        if(arr[mid] == key){
-            ans = mid;
-            e = mid - 1;
-        }
-        else if(key > arr[mid]) {//Right me jao
-            s = mid + 1;
-        }
-        else if(key < arr[mid]) {//left me jao
-            e = mid - 1;
-        }
-
-        mid = s + (e-s)/2;
-    }
-    return ans;
-}
-
-int lastocc(vector<int>& arr, int n, int key) {
-
-    int s = 0, e = n-1;
-    int mid = s + (e-s)/2;
-    int ans = -1;
-    while(s<=e) {
-
-        if(arr[mid] == key){
-            ans = mid;
-            s = mid + 1;
-        }
-        else if(key > arr[mid]) {//Right me jao
-            s = mid + 1;
-        }
-        else if(key < arr[mid]) {//left me jao
-            e = mid - 1;
-        }
-        mid = s + (e-s)/2;
-    }
-    return ans;
-}
-    vector<int> searchRange(vector<int>& v, int x) {
-        int n=v.size();
-        
+class Solution
+{
+    public: 
+    void rightOccurences(vector<long long> v , long long x , long &res2){
         int s=0;
-        int e=n-1;
+        int e=v.size()-1;
         
-        int r1=-1;
-        int r2=-1;
+        while(s <= e){
+            int mid=s+(e-s)/2;
+            
+            if(v[mid] == x){
+                res2=mid;
+                s=mid+1;
+            }
+            else if(v[mid] > x) e=mid-1;
+            else s=mid+1;
+        }
+    }
+    void leftOccurences(vector<long long> v , long long x , long &res1){
+        int s=0;
+        int e=v.size()-1;
         
+        while(s <= e){
+            int mid=s+(e-s)/2;
+            
+            if(v[mid] == x){
+                res1=mid;
+                e=mid-1;
+            }
+            else if(v[mid] > x) e=mid-1;
+            else s=mid+1;
+        }
+    }
+    pair<long,long> indexes(vector<long long> v, long long x)
+    {
+        // code here
+        int s=0;
+        int e=v.size()-1;
+        long res1=-1;
+        long res2=-1;
+        
+        leftOccurences(v , x , res1);
+        rightOccurences(v , x , res2);
+        return {res1,res2};
     }
 };
